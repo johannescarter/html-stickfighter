@@ -1,15 +1,30 @@
+/**
+ * > Blink animation
+ * This animation is broken, because it uses custom css properties in 
+ * the definition of the keyframes.
+ * Helpfull references:
+ * - https://www.w3schools.com/css/css3_animations.asp
+ * - https://stackoverflow.com/questions/50661638/css-animate-custom-properties-variables
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/@property
+ * - https://www.w3.org/TR/css-variables-1/
+ */
 @keyframes blink {
   0%   {--fighter-color: red;}
   25%  {--fighter-color: yellow;}
   50%  {--fighter-color: blue;}
   100% {--fighter-color: green;}
 }
-#fighter.blink {
+#fighter[animation=blink] {
   animation-name: blink;
   animation-duration: 4s;
   animation-iteration-count: infinite;
 }
 
+/**
+ * > Wink animation
+ * left arm and left arm lower are animated separately, each having their 
+ * own animation and keyframes
+ */
 @keyframes wink-arm-left {
   0% {
     transform: rotate(160deg);
