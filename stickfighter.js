@@ -4,6 +4,8 @@ console.log("> Welcome mighty Programmer! The Stickfighter greets you!");
 
 // load the stickfighter
 var stickfighter = document.getElementById("fighter");
+
+// function to set the animation of the stickfighter
 function setAnimation (name) {
     if (stickfighter != null)
         stickfighter.setAttribute("animation", name);
