@@ -1,0 +1,46 @@
+@keyframes blink {
+  0%   {--fighter-color: red;}
+  25%  {--fighter-color: yellow;}
+  50%  {--fighter-color: blue;}
+  100% {--fighter-color: green;}
+}
+#fighter.blink {
+  animation-name: blink;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes wink-arm-left {
+  0% {
+    transform: rotate(160deg);
+  }
+  50% {
+    transform: rotate(190deg);
+  }
+  100% {
+    transform: rotate(160deg);
+  }
+}
+#fighter[animation=wink] .arm.left {
+  animation-name: wink-arm-left;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+}
+@keyframes wink-arm-left-lower {
+  0% {
+    transform: rotate(45deg);
+  }
+  50% {
+    transform: rotate(80deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
+#fighter[animation=wink] .arm.left .arm-part.lower {
+  animation-name: wink-arm-left-lower;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+}

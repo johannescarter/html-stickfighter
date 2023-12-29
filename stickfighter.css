@@ -1,0 +1,166 @@
+/**
+ * This fixes the only descrete animatability of custom css properties. 
+ * Unfortunately this is not supported by firefox for android and older browsers.
+ */
+ @property --left-arm-rotation {
+    syntax: "<number>";
+    initial-value: 0;
+    inherits: false;
+}
+
+:root {
+    --one-sm-unit: 4vmin;
+    --figure-rotation: 0;
+    --head-rotaion: 0;
+    --left-arm-rotation: 0;
+    --left-arm-lower-rotation: 0;
+    --right-arm-rotation: 0;
+    --right-arm-lower-rotation: 0;
+    --left-leg-rotation: 0;
+    --left-leg-lower-rotation: 0;
+    --right-leg-rotation: 0;
+    --right-leg-lower-rotation: 0;
+    --fighter-color: black;
+}
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+.stage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    background-color: #e3e3e3;
+}
+#fighter {
+    position: absolute;
+    bottom: 0vmin;
+    top: auto;
+    width: calc(4.5*var(--one-sm-unit));
+    height: calc(15.75*var(--one-sm-unit));
+    left: 50%;
+    transform: rotate(calc(var(--figure-rotation)*1deg));
+}
+hitbox {
+    /*background-color: #ff6655;*/
+    width: calc(4.5*var(--one-sm-unit));
+    height: calc(15.75*var(--one-sm-unit));
+    display: flex;
+    position: absolute;
+}
+model {
+    width: calc(.5 * var(--one-sm-unit));
+    display: flex;
+    position: relative;
+    left: calc(2*var(--one-sm-unit));
+    top: calc(2.5*var(--one-sm-unit));
+}
+.head {
+    height: calc(2*var(--one-sm-unit));
+    width: calc(1.75*var(--one-sm-unit));
+    position: absolute;
+    border: calc(.5 * var(--one-sm-unit)) solid var(--fighter-color);
+    border-radius: 50%;
+    left: calc(50% - 1.375*var(--one-sm-unit));
+    top: calc(-2.5*var(--one-sm-unit));
+    transform: rotate(calc(var(--head-rotaion)*1deg));
+    transform-origin: 50% calc(2.75 * var(--one-sm-unit)) 0;
+}
+.torso {
+    height: calc(5 * var(--one-sm-unit));
+    border: calc(.25 * var(--one-sm-unit)) solid var(--fighter-color);
+    border-radius: calc(.25 * var(--one-sm-unit));
+    position: relative;
+}
+.round-torso .torso {
+    width: calc(3.5 * var(--one-sm-unit));
+    border: calc(.5 * var(--one-sm-unit)) solid var(--fighter-color);
+    border-radius: 50%;
+}
+.arm {
+    position: absolute;
+    top: calc(.8 * var(--one-sm-unit));
+    transform-origin: calc(.25 * var(--one-sm-unit)) 50% 0;
+    display: flex;
+    /*background: #6c6cc5;*/
+}
+.arm.left {
+    left: 0;
+    transform: rotate(calc(130deg + (var(--left-arm-rotation)*1deg)));
+    transform-origin: calc(.25 * var(--one-sm-unit)) 50% 0;
+}
+.round-torso .arm.left {
+    left: calc(.6 * var(--one-sm-unit));
+}
+.arm.right {
+    right: 0;
+    transform: rotate(calc(230deg + (var(--right-arm-rotation)*1deg)));
+    transform-origin: calc(6.725 * var(--one-sm-unit)) calc(.25 * var(--one-sm-unit)) 0;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.round-torso .arm.right {
+    right: calc(.6 * var(--one-sm-unit));
+}
+.arm.left > .arm-part.lower {
+    transform-origin: calc(.25 * var(--one-sm-unit)) calc(.25 * var(--one-sm-unit)) 0;
+    transform: rotate(calc(-50deg + (var(--left-arm-lower-rotation)*1deg)));
+    position: relative;
+    left: calc(-0.5 * var(--one-sm-unit));
+    /*top: calc(-0.01 * var(--one-sm-unit));*/
+}
+.arm.right > .arm-part.lower {
+    transform-origin: calc(3.25 * var(--one-sm-unit)) calc(.25 * var(--one-sm-unit)) 0;
+    transform: rotate(calc(50deg + (var(--right-arm-lower-rotation)*1deg)));
+    position: relative;
+    left: calc(.4 * var(--one-sm-unit));
+}
+.arm-part {
+    border: calc(.25 * var(--one-sm-unit)) solid var(--fighter-color);
+    border-radius: calc(.5 * var(--one-sm-unit));
+    background: var(--fighter-color);
+}
+.arm-part.upper {
+    width: calc(3 * var(--one-sm-unit));
+    /*border-color: rgb(207, 69, 69);*/
+}
+.arm-part.lower {
+    width: calc(3 * var(--one-sm-unit));
+    /*border-color: rgb(94, 219, 94);*/
+}
+.leg {
+    position: absolute;
+    bottom: calc(0 * var(--one-sm-unit));
+    display: flex;
+    transform-origin: calc(.25 * var(--one-sm-unit)) calc(.25 * var(--one-sm-unit)) 0;
+}
+.leg.left {
+    transform: rotate(calc(110deg + (var(--left-leg-rotation)*1deg)));
+}
+.leg.right {
+    transform: rotate(calc(70deg + (var(--right-leg-rotation)*1deg)));
+}
+.leg.left > .leg-part.lower {
+    transform: rotate(calc(-15deg + (var(--left-leg-lower-rotation)*1deg)));
+}
+.leg.right > .leg-part.lower {
+    transform: rotate(calc(15deg + (var(--right-leg-lower-rotation)*1deg)));
+}
+.leg-part {
+    border: calc(.25 * var(--one-sm-unit)) solid var(--fighter-color);
+    border-radius: calc(.25 * var(--one-sm-unit));
+    background: var(--fighter-color);
+}
+.leg-part.upper {
+    width: calc(4 * var(--one-sm-unit));
+}
+.leg-part.lower {
+    width: calc(4 * var(--one-sm-unit));
+    position: relative; 
+    left: calc(-.4 * var(--one-sm-unit));
+    transform-origin: calc(.25 * var(--one-sm-unit)) calc(.25 * var(--one-sm-unit)) 0;
+    transform: rotate(90deg);
+}
